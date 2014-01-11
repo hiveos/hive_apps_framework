@@ -5,6 +5,7 @@ import hive.framework.R;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -31,7 +33,8 @@ public class UserDetailsDialog extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.dialog_user_details);
 
-//		String mAvatarUrl = "http://hive.xiprox.org/student/" + mUserInformation.get(1) + "/avatar.png";
+		// String mAvatarUrl = "http://hive.xiprox.org/student/" +
+		// mUserInformation.get(1) + "/avatar.png";
 
 		readInformation();
 
@@ -44,6 +47,7 @@ public class UserDetailsDialog extends Activity {
 
 			@Override
 			public void onClick(View v) {
+
 				finish();
 			}
 		});
@@ -53,6 +57,30 @@ public class UserDetailsDialog extends Activity {
 			@Override
 			public void onClick(View v) {
 
+				File mLoginStatusFile = new File(Environment
+						.getExternalStorageDirectory() + "/HIVE/User/logged");
+
+				if (!mLoginStatusFile.exists()) {
+					try {
+						mLoginStatusFile.createNewFile();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				} else {
+
+					FileWriter Write;
+					try {
+						Write = new FileWriter(mLoginStatusFile);
+						Write.write("false");
+						Write.flush();
+						Write.close();
+						Write = null;
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+
+				finish();
 			}
 		});
 	}

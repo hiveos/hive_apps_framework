@@ -9,12 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/avatar_default_4" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="3dp"
-        android:background="#d5d5d5" >
+        android:background="#5a5a5a" >
     </LinearLayout>
 
     <LinearLayout
@@ -36,14 +36,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dialog_name"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#0099CC" />
+                android:textColor="#cccccc" />
 
             <TextView
                 android:id="@+id/UserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#7a7a7a" />
+                android:textColor="#bbbbbb" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,14 +58,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dialog_id"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#0099CC" />
+                android:textColor="#cccccc" />
 
             <TextView
                 android:id="@+id/UserId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#7a7a7a" />
+                android:textColor="#bbbbbb" />
         </LinearLayout>
 
         <LinearLayout
@@ -80,14 +80,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dialog_class"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#0099CC" />
+                android:textColor="#cccccc" />
 
             <TextView
                 android:id="@+id/UserClass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#7a7a7a" />
+                android:textColor="#bbbbbb" />
         </LinearLayout>
     </LinearLayout>
 
@@ -104,7 +104,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#d5d5d5"
+                android:background="#5a5a5a"
                 android:orientation="vertical" >
             </LinearLayout>
 
@@ -115,7 +115,7 @@
 
                 <Button
                     android:id="@+id/dialog_logout"
-                    style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+                    style="@android:style/Widget.Holo.Button.Borderless.Small"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:text="@string/dailog_logout" />
@@ -123,13 +123,13 @@
                 <LinearLayout
                     android:layout_width="1dp"
                     android:layout_height="fill_parent"
-                    android:background="#d5d5d5"
+                    android:background="#5a5a5a"
                     android:orientation="vertical" >
                 </LinearLayout>
 
                 <Button
                     android:id="@+id/dialog_cancel"
-                    style="@android:style/Widget.Holo.Light.Button.Borderless.Small"
+                    style="@android:style/Widget.Holo.Button.Borderless.Small"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:text="@string/cancel" />
