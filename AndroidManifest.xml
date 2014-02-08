@@ -39,6 +39,7 @@
         <activity
             android:name=".DeviceAdminRequestActivity"
             android:excludeFromRecents="true"
+            android:screenOrientation="portrait"
             android:theme="@style/HomescreenTheme" >
         </activity>
 
