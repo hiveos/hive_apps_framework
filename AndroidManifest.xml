@@ -36,6 +36,29 @@
             android:label="@string/action_settings"
             android:theme="@style/Theme.Settings" >
         </activity>
+        <activity
+            android:name=".DeviceAdminRequestActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/HomescreenTheme" >
+        </activity>
+
+        <receiver android:name=".receivers.HiveBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="hive.action.General" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receivers.DeviceAdmin"
+            android:description="@string/device_admin_descriptions"
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

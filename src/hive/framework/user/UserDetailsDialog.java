@@ -1,6 +1,8 @@
 package hive.framework.user;
 
+import hive.framework.DeviceAdminRequestActivity;
 import hive.framework.R;
+import hive.framework.receivers.DeviceAdmin;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,12 +12,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -28,17 +34,22 @@ public class UserDetailsDialog extends Activity {
 
 	ArrayList<String> mUserInformation = new ArrayList<String>();
 
+	DevicePolicyManager mDPM;
+	ComponentName mAdminName;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.dialog_user_details);
 
-		// String mAvatarUrl = "http://hive.xiprox.org/student/" +
-		// mUserInformation.get(1) + "/avatar.png";
+		mContext = this;
 
 		readInformation();
 
 		setValues();
+
+		mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+		mAdminName = new ComponentName(this, DeviceAdmin.class);
 
 		Button mCancelButton = (Button) findViewById(R.id.dialog_cancel);
 		Button mLogoutButton = (Button) findViewById(R.id.dialog_logout);
@@ -57,30 +68,64 @@ public class UserDetailsDialog extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				File mLoginStatusFile = new File(Environment
-						.getExternalStorageDirectory() + "/HIVE/User/logged");
+				if (mDPM.isAdminActive(mAdminName)) {
+					File mLoginStatusFile = new File(Environment
+							.getExternalStorageDirectory()
+							+ "/HIVE/User/logged");
 
-				if (!mLoginStatusFile.exists()) {
-					try {
-						mLoginStatusFile.createNewFile();
-					} catch (IOException e) {
-						e.printStackTrace();
+					if (!mLoginStatusFile.exists()) {
+						try {
+							mLoginStatusFile.createNewFile();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					} else {
+
+						FileWriter Write;
+						try {
+							Write = new FileWriter(mLoginStatusFile);
+							Write.write("false");
+							Write.flush();
+							Write.close();
+							Write = null;
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
+
+					Intent intent = new Intent();
+					intent.setAction("hive.action.General");
+					intent.putExtra("do", "logout");
+					sendBroadcast(intent);
+
+					mDPM.lockNow();
+
+					finish();
 				} else {
-
-					FileWriter Write;
-					try {
-						Write = new FileWriter(mLoginStatusFile);
-						Write.write("false");
-						Write.flush();
-						Write.close();
-						Write = null;
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					AlertDialog.Builder builder = new AlertDialog.Builder(
+							mContext);
+					builder.setMessage(R.string.error_admin_not_enabled)
+							.setPositiveButton(
+									R.string.dialog_selection_set_admin,
+									new DialogInterface.OnClickListener() {
+										public void onClick(
+												DialogInterface dialog, int id) {
+											Intent i = new Intent(
+													mContext,
+													DeviceAdminRequestActivity.class);
+											i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+											mContext.startActivity(i);
+										}
+									})
+							.setNegativeButton(R.string.cancel,
+									new DialogInterface.OnClickListener() {
+										public void onClick(
+												DialogInterface dialog, int id) {
+										}
+									});
+					builder.create();
+					builder.show();
 				}
-
-				finish();
 			}
 		});
 	}

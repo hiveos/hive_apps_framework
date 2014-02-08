@@ -9,5 +9,11 @@
     <string name="dialog_name">NAME: </string>
     <string name="dialog_id">ID: </string>
     <string name="dialog_class">CLASS: </string>
+    <string name="device_admin_descriptions">This lets HIVE system perform some system functions</string>
+    <string name="device_admin_title">Device Administrator</string>
+    <string name="device_admin_desc">HIVE requires device administrator permissions in order to function properly</string>
+    <string name="device_admin_go">Set as Device Administrator</string>
+    <string name="error_admin_not_enabled">HIVE is not running as device administrator. Logout can\'t be done.</string>
+    <string name="dialog_selection_set_admin">Set as Admin</string>
 
 </resources>
