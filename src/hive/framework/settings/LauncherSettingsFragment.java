@@ -21,7 +21,5 @@ public class LauncherSettingsFragment extends PreferenceFragment implements
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
-
 	}
-
 }

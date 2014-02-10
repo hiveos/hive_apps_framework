@@ -1,6 +1,7 @@
 package hive.framework.receivers;
 
 import hive.framework.DeviceAdminRequestActivity;
+import hive.framework.NoNetworkActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,11 @@ public class HiveBroadcastReceiver extends BroadcastReceiver {
 				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				context.startActivity(i);
 			}
+		}
+		if (intent.getStringExtra("do").equals("ERROR_NO_CONNECTION")) {
+			Intent i = new Intent(context, NoNetworkActivity.class);
+			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(i);
 		}
 	}
 }
