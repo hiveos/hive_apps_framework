@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <header
+        android:fragment="hive.framework.settings.LauncherSettingsFragment"
+        android:icon="@drawable/ic_settings_home"
+        android:parentActivityName="hive.framework.settings.SettingsActivity"
+        android:title="@string/prefs_category_launcher" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="hive.framework.settings.SettingsActivity" />
+    </header>
+
+</preference-headers>

@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <PreferenceCategory
+        android:layout_width="fill_parent"
+        android:key="settings_launcher_ui"
+        android:title="@string/prefs_launcher_category_ui_title" >
+        <ListPreference
+            android:defaultValue="@string/prefs_launcher_transition_default"
+            android:dialogTitle="@string/prefs_launcher_transition_title"
+            android:entries="@array/prefs_launcher_transition_entries"
+            android:entryValues="@array/prefs_launcher_transition_values"
+            android:key="launcher_transition"
+            android:summary="@string/prefs_launcher_transition_sum"
+            android:title="@string/prefs_launcher_transition_title" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

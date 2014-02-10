@@ -15,5 +15,21 @@
     <string name="error_admin_not_enabled">HIVE is not running as device administrator. Logout can\'t be done.</string>
     <string name="dialog_selection_set_admin">Set as Admin</string>
     <string name="no_settings">No settings are available at this time :/</string>
+    <string name="prefs_category_launcher">Home</string>
+    <string name="prefs_category_launcher_sum">Homescreen launcher preferences</string>
+
+    <string-array name="prefs_launcher_transition_entries">
+        <item>Slide</item>
+        <item>Zoom Out</item>
+    </string-array>
+    <string-array name="prefs_launcher_transition_values">
+        <item>slide</item>
+        <item>zoom-out</item>
+    </string-array>
+
+    <string name="prefs_launcher_category_ui_title">User Interface</string>
+    <string name="prefs_launcher_transition_title">Transition Animation</string>
+    <string name="prefs_launcher_transition_sum">Animation displayed when swiping between homescreen pages</string>
+    <string name="prefs_launcher_transition_default">slide</string>
 
 </resources>
