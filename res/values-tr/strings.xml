@@ -15,21 +15,19 @@
     <string name="error_admin_not_enabled">HIVE sistemi cihaz yöneticisi izinlerine sahip değil. Çıkış yapılamaz!</string>
     <string name="dialog_selection_set_admin">Yönetici olarak ayarla</string>
     <string name="no_settings">Henüz bir ayar mevcut değil :/</string>
-    <string name="prefs_category_launcher">Launcher</string>
-    <string name="prefs_category_launcher_sum">Homescreen launcher preferences</string>
+    <string name="prefs_category_launcher">Ev</string>
+    <string name="prefs_category_launcher_sum">Ana ekran ayarları</string>
 
     <string-array name="prefs_launcher_transition_entries">
-        <item>Slide</item>
-        <item>Zoom Out</item>
-    </string-array>
-    <string-array name="prefs_launcher_transition_values">
-        <item>slide</item>
-        <item>zoom-out</item>
+        <item>Kaydırma</item>
+        <item>Uzaklaştırma</item>
     </string-array>
 
-    <string name="prefs_launcher_category_ui_title">User Interface</string>
-    <string name="prefs_launcher_transition_title">Transition Animation</string>
-    <string name="prefs_launcher_transition_sum">Animation displayed when swiping between homescreen pages</string>
-    <string name="prefs_launcher_transition_default">slide</string>
+    <string name="prefs_launcher_category_ui_title">Kullanıcı Arayüzü</string>
+    <string name="prefs_launcher_transition_title">Geçiş Efekti</string>
+    <string name="prefs_launcher_transition_sum">Ekranlar arası kaydırırken gösterilen efekt</string>
+    <string name="no_connection">HIVE sunucularına bağlanılamıyor</string>
+    <string name="no_connection_info">\nYardım almak için lütfen yöneticilerinizle irtibata geçin</string>
+    <string name="wireless_settings">Kablosuz Ayarları</string>
 
 </resources>
