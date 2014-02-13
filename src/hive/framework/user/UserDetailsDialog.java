@@ -152,8 +152,17 @@ public class UserDetailsDialog extends Activity {
 		if (mUserAvatarFile.exists() && mUserInfoFile.exists()) {
 			UserAvatarView.setImageBitmap(mUserAvatar);
 			UserNameView.setText(" " + mUserInformation.get(0).toUpperCase());
-			UserIdView.setText(" " + mUserInformation.get(1).toUpperCase());
-			UserClassView.setText(" " + mUserInformation.get(2));
+			UserIdView
+					.setText(" "
+							+ mUserInformation
+									.get(2)
+									.toUpperCase()
+									.substring(
+											mUserInformation.get(2)
+													.indexOf("=") + 1));
+			UserClassView.setText(" "
+					+ mUserInformation.get(3).substring(
+							mUserInformation.get(3).indexOf("=") + 1));
 
 		} else {
 			UserAvatarView.setImageResource(R.drawable.ic_launcher);

@@ -44,9 +44,6 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#c5c5c5" />
-
-            <TextView>
-            </TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -91,12 +88,6 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#c5c5c5" />
-
-            <TextView>
-            </TextView>
-
-            <TextView>
-            </TextView>
         </LinearLayout>
     </LinearLayout>
 
