@@ -58,7 +58,6 @@ public class UserDetailsDialog extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
 				finish();
 			}
 		});
@@ -67,65 +66,7 @@ public class UserDetailsDialog extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
-				if (mDPM.isAdminActive(mAdminName)) {
-					File mLoginStatusFile = new File(Environment
-							.getExternalStorageDirectory()
-							+ "/HIVE/User/logged");
-
-					if (!mLoginStatusFile.exists()) {
-						try {
-							mLoginStatusFile.createNewFile();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					} else {
-
-						FileWriter Write;
-						try {
-							Write = new FileWriter(mLoginStatusFile);
-							Write.write("false");
-							Write.flush();
-							Write.close();
-							Write = null;
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
-
-					Intent intent = new Intent();
-					intent.setAction("hive.action.General");
-					intent.putExtra("do", "logout");
-					sendBroadcast(intent);
-
-					mDPM.lockNow();
-
-					finish();
-				} else {
-					AlertDialog.Builder builder = new AlertDialog.Builder(
-							mContext);
-					builder.setMessage(R.string.error_admin_not_enabled)
-							.setPositiveButton(
-									R.string.dialog_selection_set_admin,
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
-											Intent i = new Intent(
-													mContext,
-													DeviceAdminRequestActivity.class);
-											i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-											mContext.startActivity(i);
-										}
-									})
-							.setNegativeButton(R.string.cancel,
-									new DialogInterface.OnClickListener() {
-										public void onClick(
-												DialogInterface dialog, int id) {
-										}
-									});
-					builder.create();
-					builder.show();
-				}
+				logOut();
 			}
 		});
 	}
@@ -183,6 +124,94 @@ public class UserDetailsDialog extends Activity {
 			}
 		} catch (IOException e) {
 		}
+	}
+
+	public void logOut() {
+		File mNotebooksDir = new File(Environment.getExternalStorageDirectory()
+				+ "/HIVE/Notebooks");
+		File mDrawingsDir = new File(Environment.getExternalStorageDirectory()
+				+ "/HIVE/Drawings");
+		File mBooksDir = new File(Environment.getExternalStorageDirectory()
+				+ "/HIVE/Books");
+		File mTempDir = new File(Environment.getExternalStorageDirectory()
+				+ "/HIVE/Temp");
+		File mZipDir = new File(Environment.getExternalStorageDirectory()
+				+ "/HIVE/Zipped_Notebooks");
+		File mLoginStatusFile = new File(
+				Environment.getExternalStorageDirectory() + "/HIVE/User/logged");
+
+		if (mDPM.isAdminActive(mAdminName)) {
+
+			if (!mLoginStatusFile.exists()) {
+				try {
+					mLoginStatusFile.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else {
+
+				FileWriter Write;
+				try {
+					Write = new FileWriter(mLoginStatusFile);
+					Write.write("false");
+					Write.flush();
+					Write.close();
+					Write = null;
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+			Intent intent = new Intent();
+			intent.setAction("hive.action.General");
+			intent.putExtra("do", "logout");
+			sendBroadcast(intent);
+
+			mDPM.lockNow();
+
+			deleteDir(mNotebooksDir);
+			deleteDir(mDrawingsDir);
+			deleteDir(mBooksDir);
+			deleteDir(mTempDir);
+			deleteDir(mZipDir);
+
+			finish();
+		} else {
+			AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+			builder.setMessage(R.string.error_admin_not_enabled)
+					.setPositiveButton(R.string.dialog_selection_set_admin,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+									Intent i = new Intent(mContext,
+											DeviceAdminRequestActivity.class);
+									i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+									mContext.startActivity(i);
+								}
+							})
+					.setNegativeButton(R.string.cancel,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int id) {
+								}
+							});
+			builder.create();
+			builder.show();
+		}
+	}
+
+	public static boolean deleteDir(File dir) {
+		if (dir.isDirectory()) {
+			String[] children = dir.list();
+			for (int i = 0; i < children.length; i++) {
+				boolean success = deleteDir(new File(dir, children[i]));
+				if (!success) {
+					return false;
+				}
+			}
+		}
+
+		return dir.delete();
 	}
 
 }
